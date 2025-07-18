@@ -21,10 +21,9 @@ const User = require("./models/user.js");
 const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
-
-
-
 const dbUrl = process.env.ATLASDB_URL;
+
+
 // Connect to MongoDB
 main()
     .then(() => {
@@ -46,13 +45,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")));
 
+console.log("MONGO URL:", dbUrl);
 
 const store = MongoStore.create({
   mongoUrl: dbUrl,
   crypto: {
-    secret: process.env.SECRET, // Used to encrypt session data in MongoDB
+    secret: process.env.SECRET, 
   },
-  touchAfter: 24 * 3600, // Session will only be updated once every 24 hours (in seconds)
+  touchAfter: 24 * 3600, 
 });
 
 store.on("error",() =>{
