@@ -34,7 +34,12 @@ main()
     });
 
 async function main() {
-    await mongoose.connect(dbUrl);
+    await mongoose.connect(dbUrl, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        ssl: true,
+        tlsAllowInvalidCertificates: false // optional: only if you’re using a custom certificate
+    });
 }
 
 // Middleware and Setup
