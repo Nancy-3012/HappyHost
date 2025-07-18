@@ -1,0 +1,95 @@
+<style>
+  .search-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .search-inp {
+    border-radius: 25px;
+    padding: 0.4rem 1.2rem;
+    font-size: 0.95rem;
+    border: 1px solid #ccc;
+    width: 250px;
+  }
+
+  .search-btn {
+    background-color: #fe424d;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    padding: 0.4rem 1rem;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .search-btn:hover {
+    background-color: #e03e48;
+  }
+
+  .navbar-brand i {
+    color: #fe424d;
+    margin-right: 0.4rem;
+  }
+
+  .nav-link {
+    font-weight: 500;
+  }
+
+  .nav-link:hover {
+    color: #fe424d !important;
+  }
+</style>
+
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top py-2">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center" href="/">
+      <i class="fa-solid fa-compass-drafting fs-4"></i>
+      <span class="fw-bold">Wanderlust</span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-3">
+        <li class="nav-item">
+          <a class="nav-link" href="/listings">Explore</a>
+        </li>
+      </ul>
+
+      <!-- Centered Search -->
+      <form class="search-wrapper mx-auto" action="/search" method="GET">
+        <input class="search-inp form-control" type="search" name="q" placeholder="Search destinations" required>
+        <button class="search-btn" type="submit">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <span>Search</span>
+        </button>
+      </form>
+
+      <!-- Right-side nav -->
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/listings/new">Airbnb your HOME</a>
+        </li>
+        <% if (!currUser) { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/signup"><b>Sign up</b></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login"><b>Log in</b></a>
+          </li>
+        <% } %>
+        <% if (currUser) { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout"><b>Log out</b></a>
+          </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</nav>
